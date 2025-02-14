@@ -9,6 +9,6 @@ def index(request):
     # check if the user has an access token stored in their session
     # if they do they are logged in otherwise send them the the login page
     if 'access_token' in request.session:
-        return HttpResponse(request.session["access_token"] )
+        return HttpResponse(request.app_store_client.get_user_info()['UserId'])
     else:
         return HttpResponseRedirect('/auth/login')

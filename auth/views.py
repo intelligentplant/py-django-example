@@ -8,6 +8,8 @@ import pkce
 
 import intelligent_plant.app_store_client as app_store
 
+import auth.client_handler as client_handler
+
 APP_ID = getattr(settings, "APP_ID", None)
 APP_SECRET = getattr(settings, "APP_SECRET", None)
 REDIRECT_URL = getattr(settings, "REDIRECT_URL", None)
@@ -27,13 +29,7 @@ def login(request):
 
 
 def logout(request):
-    try:
-        # delete the session information we stored during login
-        del request.session["access_token"]
-        del request.session["expiry_time"]
-        del request.session["refresh_token"]
-    except KeyError:
-        pass
+    client_handler.logout(request)
     return HttpResponse("You're logged out.")
 
 def oauth_callback(request):
@@ -49,7 +45,10 @@ def oauth_callback(request):
     # delete the code verifier from the session, we don't need it anymore
     del request.session['code_verifier']
 
+    user_info = app_store_client.get_user_info()
+
     # store the app store client's authorization information to the user's session
+    request.session["user_info"] = user_info
     request.session["access_token"] = app_store_client.access_token
     request.session["expiry_time"] = app_store_client.expiry_time
     request.session["refresh_token"] = app_store_client.refresh_token
