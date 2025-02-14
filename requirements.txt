@@ -1,0 +1,4 @@
+django
+pkce
+python-dotenv
+intelligent-plant
