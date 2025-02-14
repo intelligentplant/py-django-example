@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Data Sources</title>
+</head>
+<body>
+    {% if data_sources %}
+        <h2>Available Data Sources:</h2>
+        <ul>
+        {% for data_source in data_sources %}
+            <li>{{ data_source.Name.DisplayName }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data sources are authorised.</p>
+    {% endif %}
+</body>
+</html>
