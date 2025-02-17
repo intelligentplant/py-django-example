@@ -25,8 +25,8 @@ REDIRECT_URL=http://localhost:8080/auth/oauth_callback
 Generate and apply migartions:
 
 ```bash
- python manage.py makemigrations
- python manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 You can now run the web server using (this must be on port 8080 for the redirect URL to be correct):

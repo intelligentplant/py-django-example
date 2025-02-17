@@ -7,7 +7,7 @@
         <h2>Available Data Sources:</h2>
         <ul>
         {% for data_source in data_sources %}
-            <li>{{ data_source.Name.DisplayName }}</li>
+            <li><a href="{{ data_source.Name.QualifiedName }}/1">{{ data_source.Name.DisplayName }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

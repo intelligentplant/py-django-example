@@ -16,3 +16,20 @@ def index(request):
         return render(request, "tag_browser/index.html", context)
     else:
         return HttpResponseRedirect('/auth/login')
+    
+
+def tag_search(request, dsn, page):
+    if 'access_token' in request.session:
+        tags = request.data_core_client.get_tags(dsn, page=page)
+        
+        context = {
+            "tags": tags,
+            "page": page,
+            "dsn": dsn,
+            "next_page": page+1,
+        }
+        if page > 1:
+            context['prev_page'] = page-1
+        return render(request, "tag_browser/tag_search.html", context)
+    else:
+        return HttpResponseRedirect('/auth/login')
