@@ -17,8 +17,8 @@ You must then create an app registration to get an app ID and app secret. Regist
 Create a file in the route of this repository called `.env` with the following content:
 
 ```
-APP_ID=<you app id>
-APP_SECRET=<you app secret>
+APP_ID=<your app id>
+APP_SECRET=<your app secret>
 REDIRECT_URL=http://localhost:8080/auth/oauth_callback
 ```
 
